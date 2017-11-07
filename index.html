@@ -39,7 +39,7 @@
           "user-key": "88b8944b17a961d17177d3ff396960e1",
           "cache-control": "no-cache",
           "postman-token": "3c2d753c-483d-66d8-2e0d-1826562cd320",
-          "Access-Control-Allow-Origin": "*"
+          "Origin": "*"
         }
       }
 
@@ -67,7 +67,7 @@
               "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
               "cache-control": "no-cache",
               "postman-token": "04c3a2fa-49ae-3de6-c4ea-c78a5f477718",
-              "Access-Control-Allow-Origin": "*"
+              "Origin": "*"
             }
           }
 
@@ -75,7 +75,7 @@
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
+              "url": "https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
               "method": "GET",
               "headers": {
                 "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
