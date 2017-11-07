@@ -31,7 +31,7 @@
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://crossorigin.me/https://api-2445582011268.apicast.io/games/?search=" + encodeURI(gameName) + "&fields=name",
+        "url": "https://cors-anywhere.herokuapp.com/https://api-2445582011268.apicast.io/games/?search=" + encodeURI(gameName) + "&fields=name",
         "dataType": "jsonp",
         "method": "GET",
         "headers": {
@@ -61,7 +61,7 @@
           var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://api.twitch.tv/helix/games?name=" + encodedGameName,
+            "url": "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/helix/games?name=" + encodedGameName,
             "method": "GET",
             "headers": {
               "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
@@ -75,7 +75,7 @@
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
+              "url": "https://cors-anywhere.herokuapp.com/https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
               "method": "GET",
               "headers": {
                 "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
