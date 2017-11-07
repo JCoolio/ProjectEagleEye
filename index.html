@@ -36,8 +36,6 @@
         // "async": true,
         // "crossDomain": true,
         "url": "https://api-2445582011268.apicast.io/games/?search=" + encodeURI(gameName) + "&fields=name",
-        crossOrigin: true,
-        dataType: "jsonp",
         "method": "GET",
         "headers": {
           // "accept": "application/json",
@@ -67,12 +65,10 @@
             "crossDomain": true,
             "url": "https://api.twitch.tv/helix/games?name=" + encodedGameName,
             "method": "GET",
-            crossOrigin: true,
             "headers": {
               "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
               "cache-control": "no-cache",
               "postman-token": "04c3a2fa-49ae-3de6-c4ea-c78a5f477718",
-              "Origin": "*"
             }
           }
 
@@ -82,12 +78,10 @@
               "crossDomain": true,
               "url": "https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
               "method": "GET",
-              crossOrigin: true,
               "headers": {
                 "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
                 "cache-control": "no-cache",
                 "postman-token": "8941d06b-e389-5d84-254e-828d77d5639f",
-                "Access-Control-Allow-Origin": "*"
               }
             }
 
