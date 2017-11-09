@@ -36,7 +36,7 @@
     var settings = {
       // "async": true,
       // "crossDomain": true,
-      "url": "https://cors-anywhere.herokuapp.com/https://www.giantbomb.com/api/search/?api_key=9e967560c985461d6f79d069ed93ea65ef7a8b38&format=json&query=" + gameName + "&resources=game",
+      "url": 'https://www.giantbomb.com/api/search/?api_key=9e967560c985461d6f79d069ed93ea65ef7a8b38&format=json&query="' + gameName + '"&resources=game',
       "method": "GET",
       "headers": {
         "Access-Control-Allow-Origin": "*"
@@ -44,6 +44,7 @@
     }
 
     $.ajax(settings).done(function (response) {
+      console.log(response)
       for (var i = 0; i < response.results.length; i++) {
         var newItem = $("<li>");
         var newLink = $("<a href=#>");
