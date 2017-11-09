@@ -9,14 +9,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <meta charset="utf-8">
-  <script src="code.js"></script>
   <title></title>
 </head>
 
 <body>
   <div class="dropdown">
+    <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
     <input class="dropdown-toggle" type="text" data-toggle="dropdown">
     </input>
+
     <ul class="dropdown-menu">
 
     </ul>
@@ -26,6 +27,76 @@
 
     </ul>
   </div>
+  <script>
+  $("#searchBtn").on("click", function () {
+
+    var gameName = $("input").val()
+    $("ul.dropdown-menu").empty()
+
+    var settings = {
+      // "async": true,
+      // "crossDomain": true,
+      "url": "http://www.giantbomb.com/api/search/?api_key=9e967560c985461d6f79d069ed93ea65ef7a8b38&format=json&query=" + gameName + "&resources=game",
+      "method": "GET",
+      "headers": {
+
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      for (var i = 0; i < response.length; i++) {
+        var newItem = $("<li>");
+        var newLink = $("<a href=#>");
+        newLink.text(response[i].name);
+        newItem.append(newLink);
+        $("ul.dropdown-menu").append(newItem);
+      }
+
+      $('ul.dropdown-menu li').click(function () {
+        var $this = $(this)
+        $("input").val($this.text())
+
+        var encodedGameName = encodeURI($this.text())
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.twitch.tv/helix/games?name=" + encodedGameName,
+          "method": "GET",
+          "headers": {
+            "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
+            "cache-control": "no-cache",
+            "postman-token": "04c3a2fa-49ae-3de6-c4ea-c78a5f477718",
+          }
+        }
+
+        $.ajax(settings).done(function (response) {
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
+            "method": "GET",
+            "headers": {
+              "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
+              "cache-control": "no-cache",
+              "postman-token": "8941d06b-e389-5d84-254e-828d77d5639f",
+            }
+          }
+
+          $.ajax(settings).done(function (response) {
+            $('#theImg').empty()
+            for (var i = 0; i < response.data.length; i++) {
+              var responseURL = response.data[i].thumbnail_url.replace('{width}', '400').replace('{height}', '400')
+              $('#theImg').prepend('<li><img class="images" src="' + responseURL + '" /></li>')
+
+            }
+          });
+        });
+      })
+
+    });
+  });
+</script>
 
 </body>
 
