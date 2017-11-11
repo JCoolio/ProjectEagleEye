@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <form class="dropdown, form-control">
+  <form class="dropdown form-control">
 
     <select>
       <option value="default">Select Game</option>
@@ -71,7 +71,7 @@
           $('#theImg').empty()
           for (var i = 0; i < response.data.length; i++) {
             var responseURL = response.data[i].thumbnail_url.replace('{width}', '920').replace('{height}', '540')
-            $('#theImg').prepend('<li><h4><span><button class="btn btn-danger">' + response.data[i].type.toUpperCase() + '</button>&nbsp' + response.data[i].title + '</span></h4><img class="images, list-group-item, col-sm-6" src="' + responseURL + '" /></li>')
+            $('#theImg').prepend('<li><h4><span><button class="btn btn-danger">' + response.data[i].type.toUpperCase() + '</button>&nbsp' + response.data[i].title + '</span></h4><img class="images list-group-item col-sm-6" src="' + responseURL + '" /></li>')
 
             var responseTitle = response.data[i].title
             var responseView = response.data[i].viewer_count
