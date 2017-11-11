@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="dropdown">
+  <form class="dropdown, form-control">
 
     <select>
       <option value="default">Select Game</option>
@@ -24,24 +24,16 @@
       <option value="Overwatch">Overwatch</option>
       <option value="Gears of War 4">Gears of War 4</option>
       <option value="World of WarCraft">World of WarCraft</option>
-      <option value="	PLAYERUNKNOWN’S BATTLEGROUNDS">	PLAYERUNKNOWN’S BATTLEGROUNDS</option>
+      <option value="PlayerUnknown's Battlegrounds">PlayerUnknown's Battlegrounds</option>
       <option value="Call of Duty: WWII">Call of Duty: WWII</option>
     </select>
-
-    <ul class="dropdown-menu">
-
-    </ul>
-  </div>
+  </form>
   <div>
-    <ul id="theImg">
+    <ul id="theImg" class="list-group">
 
     </ul>
   </div>
   <script>
-
-  //document.querySelector("select").addEventListener("click", function(event) {
-    //console.log(this.value)
-//})
 
   document.querySelector("select").addEventListener("click", function(event) {
     if (this.value === "default") {
@@ -75,24 +67,20 @@
         }
 
         $.ajax(settings).done(function (response) {
+          console.log(response)
           $('#theImg').empty()
           for (var i = 0; i < response.data.length; i++) {
-            var responseURL = response.data[i].thumbnail_url.replace('{width}', '400').replace('{height}', '400')
-            $('#theImg').prepend('<li><img class="images" src="' + responseURL + '" /></li>')
+            var responseURL = response.data[i].thumbnail_url.replace('{width}', '920').replace('{height}', '540')
+            $('#theImg').prepend('<li><img class="images, list-group-item, col-sm-6" src="' + responseURL + '" /><h4><span><button class="btn btn-danger">' + response.data[i].type.toUpperCase() + '</button>&nbsp' + response.data[i].title + '</span></h4></li>')
+
+            var responseTitle = response.data[i].title
+            var responseView = response.data[i].viewer_count
 
           }
         });
       });
     }
 })
-
-
-      //avar gameName = $("select").val()
-
-      //$('ul.dropdown-menu li').click(function () {
-      //  var $this = $(this)
-      //  $("select").val($this.text())
-
 
 </script>
 
