@@ -14,9 +14,19 @@
 
 <body>
   <div class="dropdown">
-    <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
-    <input class="dropdown-toggle" type="text" data-toggle="dropdown">
-    </input>
+
+    <select>
+      <option value="default">Select Game</option>
+      <option value="Dota 2">Dota 2</option>
+      <option value="Counter-Strike: Global Offensive">Counter-Strike: Global Offensive</option>
+      <option value="League of Legends">League of Legends</option>
+      <option value="StarCraft II">StarCraft II</option>
+      <option value="Overwatch">Overwatch</option>
+      <option value="Gears of War 4">Gears of War 4</option>
+      <option value="World of WarCraft">World of WarCraft</option>
+      <option value="	PLAYERUNKNOWN’S BATTLEGROUNDS">	PLAYERUNKNOWN’S BATTLEGROUNDS</option>
+      <option value="Call of Duty: WWII">Call of Duty: WWII</option>
+    </select>
 
     <ul class="dropdown-menu">
 
@@ -28,76 +38,62 @@
     </ul>
   </div>
   <script>
-  $("#searchBtn").on("click", function () {
 
-    var gameName = $("input").val()
-    $("ul.dropdown-menu").empty()
+  //document.querySelector("select").addEventListener("click", function(event) {
+    //console.log(this.value)
+//})
 
-    var settings = {
-      // "async": true,
-      // "crossDomain": true,
-      "url": 'https://www.giantbomb.com/api/search/?api_key=9e967560c985461d6f79d069ed93ea65ef7a8b38&format=json&query="' + gameName + '"&resources=game',
-      "method": "GET",
-      "headers": {
-        "Access-Control-Allow-Origin": "https://github.com/JCoolio/ProjectEagleEye",
-        "cache-control": "no-cache",
-      }
-    }
+  document.querySelector("select").addEventListener("click", function(event) {
+    if (this.value === "default") {
+     return
+    } else {
+      var encodedGameName = encodeURI(this.value)
 
-    $.ajax(settings).done(function (response) {
-      console.log(response)
-      for (var i = 0; i < response.results.length; i++) {
-        var newItem = $("<li>");
-        var newLink = $("<a href=#>");
-        newLink.text(response.results[i].name);
-        newItem.append(newLink);
-        $("ul.dropdown-menu").append(newItem);
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.twitch.tv/helix/games?name=" + encodedGameName,
+        "method": "GET",
+        "headers": {
+          "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
+          "cache-control": "no-cache",
+          "postman-token": "04c3a2fa-49ae-3de6-c4ea-c78a5f477718",
+        }
       }
 
-      $('ul.dropdown-menu li').click(function () {
-        var $this = $(this)
-        $("input").val($this.text())
-
-        var encodedGameName = encodeURI($this.text())
-
+      $.ajax(settings).done(function (response) {
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "https://api.twitch.tv/helix/games?name=" + encodedGameName,
+          "url": "https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
           "method": "GET",
           "headers": {
             "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
             "cache-control": "no-cache",
-            "postman-token": "04c3a2fa-49ae-3de6-c4ea-c78a5f477718",
+            "postman-token": "8941d06b-e389-5d84-254e-828d77d5639f",
           }
         }
 
         $.ajax(settings).done(function (response) {
-          var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://api.twitch.tv/helix/streams?game_id=" + response.data[0].id + "&type=live&first=20",
-            "method": "GET",
-            "headers": {
-              "client-id": "fmeyiqd25l2obw9lhe8uizm8lpg990",
-              "cache-control": "no-cache",
-              "postman-token": "8941d06b-e389-5d84-254e-828d77d5639f",
-            }
+          $('#theImg').empty()
+          for (var i = 0; i < response.data.length; i++) {
+            var responseURL = response.data[i].thumbnail_url.replace('{width}', '400').replace('{height}', '400')
+            $('#theImg').prepend('<li><img class="images" src="' + responseURL + '" /></li>')
+
           }
-
-          $.ajax(settings).done(function (response) {
-            $('#theImg').empty()
-            for (var i = 0; i < response.data.length; i++) {
-              var responseURL = response.data[i].thumbnail_url.replace('{width}', '400').replace('{height}', '400')
-              $('#theImg').prepend('<li><img class="images" src="' + responseURL + '" /></li>')
-
-            }
-          });
         });
-      })
+      });
+    }
+})
 
-    });
-  });
+
+      //avar gameName = $("select").val()
+
+      //$('ul.dropdown-menu li').click(function () {
+      //  var $this = $(this)
+      //  $("select").val($this.text())
+
+
 </script>
 
 </body>
