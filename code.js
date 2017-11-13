@@ -55,6 +55,6 @@ function callnewapi(term){
 }
 
 $.ajax(settings).done(function (response) {
-  console.log(response);
+  console.log(response.data[0].url);
 });
 }
