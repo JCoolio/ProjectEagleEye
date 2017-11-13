@@ -38,9 +38,6 @@ $("select").on("click", function (event) {
     });
   };
 });
-$(".list-group-item").on("click", function (event) {
-  $('.jumbotron').append('<iframe src="https://player.twitch.tv/?channel=attach" frameborder="0" allowfullscreen="false" scrolling="no" height="378" width="480">')
-});
 
 function callnewapi(term){
   var settings = {
@@ -56,5 +53,12 @@ function callnewapi(term){
 
 $.ajax(settings).done(function (response) {
   console.log(response.data[0].url);
+  var gameIMG = response.data[0].url
+  $('.jumbotron').append('<img src='response.data[0].url'>')
+  $(".list-group-item").on("click", function (event) {
+  $('.jumbotron').empty()
+
+  //$('.jumbotron').append('<iframe src="https://player.twitch.tv/?channel=attach" frameborder="0" allowfullscreen="false" scrolling="no" height="378" width="480">')
+  });
 });
 }
