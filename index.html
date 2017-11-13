@@ -28,6 +28,8 @@
       <option value="Call of Duty: WWII">Call of Duty: WWII</option>
     </select>
   </form>
+  <br id="jumbo" class="jumbotron">
+
   <div>
     <ul id="theImg" class="list-group">
 
@@ -71,12 +73,14 @@
           $('#theImg').empty()
           for (var i = 0; i < response.data.length; i++) {
             var responseURL = response.data[i].thumbnail_url.replace('{width}', '920').replace('{height}', '540')
-            $('#theImg').prepend('<li><h4><span><button class="btn btn-danger">' + response.data[i].type.toUpperCase() + '</button>&nbsp' + response.data[i].title + '</span></h4><img class="images list-group-item col-sm-6" src="' + responseURL + '" /></li>')
+            $('#theImg').prepend('<li class="list-group-item col-sm-6"><img class="images" src="' + responseURL + '" /><h4><span><button class="btn btn-danger">' + response.data[i].type.toUpperCase() + '</button>&nbsp' + response.data[i].title + '</span></h4></li>')
 
-            var responseTitle = response.data[i].title
-            var responseView = response.data[i].viewer_count
 
-          }
+            document.querySelector("div").addEventListener("click", function(event) {
+            <iframe src="https://player.twitch.tv/?channel=drdisrespectlive" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620">
+            $('#jumbo').append('<iframe src="https://player.twitch.tv/?channel=" + "" frameborder="0" allowfullscreen="false" scrolling="no" height="378" width="620">')
+            });
+          };
         });
       });
     }
