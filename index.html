@@ -8,13 +8,130 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rozha+One">
+  <!--link to google font api used for submit button-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text">
+  <!--link to google font api used for searchbox-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+  <!--link to google font api used for paragraphs-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+  <!--link to google font api used for clear button-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower">
   <meta charset="utf-8">
-  <title></title>
+  <title>Project Eagle Eye</title>
 </head>
+<div class="jumbotron">
+   <header>
+    <h1>Ready to get your game on?</h1>
+  </header>
+</div>
+<style>
+.jumbotron{
+  color: blue;
+  text-align: center;
+  background-color: black;
+  padding:12px;
+  text-shadow: 7px 7px 7px green;
+  font-family: 'Rozha One', serif;
+}
 
-<body>
+.wrapper{
+    height:100%;
+    width:100%;
+}
+
+h1{
+  text-align:center;
+}
+
+p{
+  font-family: "Lora";
+  font-size:200%;
+  color: goldenrod;
+  text-align:center;
+}
+
+form{
+  margin:0 auto;
+  width:100%;
+}
+body{
+  background-size:100%;
+}
+
+input[type=text] {
+  margin: 0 auto;
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: yellow;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+#game-search {
+  font-family:"Indie Flower";
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:red;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+#game-search:hover {background-color: purple}
+
+#game-search:active {
+  background-color: black;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#searchbox{
+  font-family:"Ubuntu";
+}
+
+audio{
+  margin: 0 25%;
+  width: 50%;
+}
+input[type=text]:focus {
+  width: 55%;
+}
+
+.form-control{
+  width: 18%;
+}
+
+#theImg{
+
+}
+@media screen and (max-width: 768px) {
+  input[type=text]:focus{
+    width:52.5%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  input[type=text]:focus{
+    width:50%;
+  }
+}
+</style>
+<body background = "game2.jpg">
+  <p>Select your game here or...</p>
   <form class="dropdown form-control">
-
     <select>
       <option value="default">Select Game</option>
       <option value="Dota 2">Dota 2</option>
@@ -29,10 +146,13 @@
     </select>
   </form>
   <div>
-    <ul id="theImg" class="list-group">
+    <ul id="theImg text-center" class="list-group">
 
     </ul>
   </div>
+  <audio controls autoplay loop>
+  <source src = "BeneathTheMask.mp3" type = "audio/mpeg">
+  </audio>
   <script>
 
   document.querySelector("select").addEventListener("click", function(event) {
