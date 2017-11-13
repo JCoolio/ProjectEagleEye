@@ -46,11 +46,9 @@ function callnewapi(term){
   var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://api.giphy.com/v1/gifs/search",
+  "url": "https://api.giphy.com/v1/gifs/search&api_key4kpATRurpC7jUXR9xC5hhfZ0oUBfKvxR&q" + "term",
   "method": "GET",
   "headers": {
-    "api_key": "4kpATRurpC7jUXR9xC5hhfZ0oUBfKvxR",
-    "q": term,
     "cache-control": "no-cache",
     "postman-token": "afef52ec-25c2-d00c-a49a-7c69bde52996"
   }
