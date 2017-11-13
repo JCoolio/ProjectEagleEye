@@ -2,6 +2,7 @@ $("select").on("click", function (event) {
   if (this.value === "default") {
     return
   } else {
+    callnewapi(this.value)
     var encodedGameName = encodeURI(this.value)
     var settings = {
       "async": true,
@@ -40,3 +41,22 @@ $("select").on("click", function (event) {
 $(".list-group-item").on("click", function (event) {
   $('.jumbotron').append('<iframe src="https://player.twitch.tv/?channel=attach" frameborder="0" allowfullscreen="false" scrolling="no" height="378" width="480">')
 });
+
+callnewapi(term) {
+  var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://api.giphy.com/v1/gifs/search",
+  "method": "GET",
+  "headers": {
+    "api_key": "4kpATRurpC7jUXR9xC5hhfZ0oUBfKvxR",
+    "q": term,
+    "cache-control": "no-cache",
+    "postman-token": "afef52ec-25c2-d00c-a49a-7c69bde52996"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+}
