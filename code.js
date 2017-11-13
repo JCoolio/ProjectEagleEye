@@ -42,7 +42,7 @@ $(".list-group-item").on("click", function (event) {
   $('.jumbotron').append('<iframe src="https://player.twitch.tv/?channel=attach" frameborder="0" allowfullscreen="false" scrolling="no" height="378" width="480">')
 });
 
-callnewapi(term) {
+function callnewapi(term) {
   var settings = {
   "async": true,
   "crossDomain": true,
